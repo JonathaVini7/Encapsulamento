@@ -1,0 +1,78 @@
+using System;
+
+public class Pessoa
+{
+    private string nome;
+    private int idade;
+    private string telefone;
+    private string endereco;
+    private string email;
+
+    public string Nome
+    {
+        get { return nome; }
+        set
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                throw new ArgumentException("O nome não pode ser vazio.");
+            nome = value;
+        }
+    }
+
+    public int Idade
+    {
+        get { return idade; }
+        set
+        {
+            if (value < 0)
+                throw new ArgumentException("A idade não pode ser negativa.");
+            idade = value;
+        }
+    }
+
+    public string Telefone
+    {
+        get { return telefone; }
+        set { telefone = value; } // Sem restrições adicionais
+    }
+
+    public string Endereco
+    {
+        get { return endereco; }
+        set { endereco = value; } // Sem restrições adicionais
+    }
+
+    public string Email
+    {
+        get { return email; }
+        set
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                throw new ArgumentException("O email não pode ser vazio.");
+            email = value;
+        }
+    }
+}
+
+// Exemplo de uso
+public class Program
+{
+    public static void Main()
+    {
+        try
+        {
+            Pessoa pessoa = new Pessoa();
+            pessoa.Nome = "Jonatha";
+            pessoa.Idade = 16;
+            pessoa.Telefone = "123456789";
+            pessoa.Endereco = "Rua A, 123";
+            pessoa.Email = "jonatha@example.com";
+
+            Console.WriteLine($"Nome: {pessoa.Nome}, Idade: {pessoa.Idade}, Telefone: {pessoa.Telefone}, Endereço: {pessoa.Endereco}, Email: {pessoa.Email}");
+        }
+        catch (ArgumentException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+}
